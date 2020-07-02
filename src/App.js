@@ -6,6 +6,7 @@ import Home from "./pages/home";
 import Dashboard from "./pages/dashboard";
 import Deposit from "./pages/deposit";
 import Transfer from "./pages/transfer";
+import Transactions from "./pages/transactions";
 
 class App extends Component {
   render() {
@@ -17,6 +18,7 @@ class App extends Component {
         <Route exact path="/dashboard" component={Dashboard} />
         <Route exact path="/deposit" component={Deposit} />
         <Route exact path="/transfer" component={Transfer} />
+        <Route exact path="/transactions" component={Transactions} />
       </Switch>
     );
   }
