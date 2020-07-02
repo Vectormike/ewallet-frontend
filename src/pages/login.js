@@ -59,8 +59,6 @@ export default class Login extends Component {
           this.onPageChange("/dashboard", user);
           this.setState({ loading: false });
           this.setState({ isLoggedIn: true });
-          console.log(this.state);
-          localStorage.setItem("token", this.state.token);
         } else if (user.message) {
           this.setState({ loading: false });
           this.setState({ error: user.message });

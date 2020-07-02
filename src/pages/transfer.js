@@ -5,15 +5,25 @@ import "./register.css";
 export default class Transfer extends Component {
   constructor(props) {
     super(props);
+    this.state = this.props.location.state;
+    const token = this.state.token;
 
     this.state = {
       amount: "",
       email: "",
+      token: token,
       loading: false,
       isLoggedIn: false,
       error: "",
+      pushTo: "",
     };
   }
+
+  onPageChange = (page) => {
+    this.setState({
+      pushTo: page,
+    });
+  };
 
   onEmailChange = (e) => {
     this.setState({ email: e.target.value });
@@ -30,7 +40,10 @@ export default class Transfer extends Component {
 
     fetch("https://crenettechlabs.herokuapp.com/v1/transaction/transfer", {
       method: "post",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${this.state.token}`,
+      },
       body: JSON.stringify({
         email: email,
         amount: amount,
@@ -38,11 +51,10 @@ export default class Transfer extends Component {
     })
       .then((res) => res.json())
       .then((user) => {
-        console.log(user);
-
-        if (user.user) {
+        if (user) {
           this.setState({ loading: false });
           this.setState({ isLoggedIn: true });
+          this.onPageChange("/dashboard");
         } else if (user.message) {
           this.setState({ loading: false });
           this.setState({ error: user.message });
@@ -51,8 +63,12 @@ export default class Transfer extends Component {
   };
 
   render() {
-    return this.state.isLoggedIn ? (
-      <Redirect to="/dashboard" />
+    return this.state.pushTo ? (
+      <Redirect
+        to={{
+          pathname: this.state.pushTo,
+        }}
+      />
     ) : (
       <div className="text-center">
         <form className="form-signin" method="post" onSubmit={this.onSubmit}>
@@ -76,7 +92,7 @@ export default class Transfer extends Component {
             type="text"
             id="inputPassword"
             className="form-control"
-            name="password"
+            name="amount"
             placeholder="Amount"
             onChange={this.onAmountChange}
             required

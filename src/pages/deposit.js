@@ -3,20 +3,27 @@ import { Redirect } from "react-router-dom";
 import "./register.css";
 
 export default class Deposit extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+    this.state = this.props.location.state;
+    const token = this.state.token;
 
     this.state = {
       amount: "",
       url: "",
+      token: token,
       loading: false,
       isLoggedIn: false,
       error: "",
     };
   }
 
+  // componentWillMount() {
+  //   window.location.replace(this.state.url);
+  // }
+
   onAmountChange = (e) => {
-    this.setState({ password: e.target.value });
+    this.setState({ amount: e.target.value });
   };
 
   // Submit details to the backend
@@ -29,8 +36,7 @@ export default class Deposit extends Component {
       method: "post",
       headers: {
         "Content-Type": "application/json",
-        Authorization:
-          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1ZWZjM2VmNDljZGZhNDMxZTIyODIxMWYiLCJpYXQiOjE1OTM2ODA5NjksImV4cCI6MTU5MzY4Mjc2OX0.KbRZKaeGcElcTEdIGPay7VNNZmiu25H_D1rOoC5-osk",
+        Authorization: `Bearer ${this.state.token}`,
       },
       body: JSON.stringify({
         amount: amount,
@@ -38,11 +44,12 @@ export default class Deposit extends Component {
     })
       .then((res) => res.json())
       .then((user) => {
-        console.log(user);
-
-        if (user.user) {
+        console.log(user.response.data.authorization_url);
+        if (user.response.message === "Authorization URL created") {
           this.setState({ loading: false });
           this.setState({ isLoggedIn: true });
+          this.setState({ url: user.response.data.authorization_url });
+          console.log(this.state.url);
         } else if (user.message) {
           this.setState({ loading: false });
           this.setState({ error: user.message });
@@ -51,8 +58,8 @@ export default class Deposit extends Component {
   };
 
   render() {
-    return this.state.isLoggedIn ? (
-      <Redirect to={this.state.redirect} />
+    return this.state.url ? (
+      (window.location = this.state.url)
     ) : (
       <div className="text-center">
         <form className="form-signin" method="post" onSubmit={this.onSubmit}>
@@ -64,7 +71,7 @@ export default class Deposit extends Component {
             type="text"
             id="inputPassword"
             className="form-control"
-            name="password"
+            name="amount"
             placeholder="Amount"
             onChange={this.onAmountChange}
             required

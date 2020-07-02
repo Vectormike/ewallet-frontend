@@ -6,8 +6,6 @@ export default class Dashboard extends Component {
     super(props);
     if (this.props.location.state != null) {
       this.state = this.props.location.state;
-      console.log(this.state);
-      localStorage.getItem("token");
     } else {
       this.state = {
         user: null,
@@ -29,7 +27,12 @@ export default class Dashboard extends Component {
               <ul class="list-unstyled mt-3 mb-4">
                 Deposit monet into your wallet
               </ul>
-              <Link to="/deposit">
+              <Link
+                to={{
+                  pathname: "/deposit",
+                  state: { token: this.state.user.tokens.access.token },
+                }}
+              >
                 <button
                   type="button"
                   class="btn btn-lg btn-block btn-outline-primary"
@@ -46,7 +49,12 @@ export default class Dashboard extends Component {
             </div>
             <div class="card-body">
               <ul class="list-unstyled mt-3 mb-4">Gift your friends cash</ul>
-              <Link to="/transfer">
+              <Link
+                to={{
+                  pathname: "/transfer",
+                  state: { token: this.state.user.tokens.access.token },
+                }}
+              >
                 <button type="button" class="btn btn-lg btn-block btn-primary">
                   Send gifts
                 </button>
