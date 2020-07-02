@@ -21,17 +21,17 @@ const Home = () => {
         <div class="collapse navbar-toggleable-xs" id="exCollapsingNavbar2">
           <ul class="nav navbar-nav pull-sm-right">
             <li class="nav-item active">
-              <a class="nav-link" href="#">
+              <a class="nav-link" href="s">
                 Home <span class="sr-only">(current)</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">
+              <a class="nav-link" href="d">
                 About
               </a>
             </li>
             <li class="nav-item">
-              <a class="btn btn-primary" href="#">
+              <a class="btn btn-primary" href="d">
                 Sign in
               </a>
             </li>

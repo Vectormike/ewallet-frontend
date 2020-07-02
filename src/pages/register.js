@@ -123,12 +123,28 @@ export default class Register extends Component {
             required
           />
           <button
-            className="btn btn-lg btn-primary btn-block"
+            className="btn btn-md btn-primary mx-2"
             disabled={this.state.loading}
             type="submit"
           >
             {this.state.loading ? "Sending data to NASA" : "Register"}
           </button>
+          <Link to="/">
+            <button
+              className="btn btn-md btn-primary mx-2"
+              disabled={this.state.loading}
+              type="submit"
+            >
+              {this.state.loading ? (
+                <div class="spinner-border" role="status">
+                  <span class="sr-only">Loading...</span>
+                </div>
+              ) : (
+                "Back"
+              )}
+            </button>
+          </Link>
+
           <div className="">{this.state.error}</div>
         </form>
       </div>

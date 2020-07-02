@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import "./register.css";
 
 export default class Deposit extends Component {
@@ -78,12 +78,24 @@ export default class Deposit extends Component {
           />
           <br />
           <button
-            className="btn btn-lg btn-primary btn-block"
+            className="btn btn-lg btn-primary mx-2"
             disabled={this.state.loading}
             type="submit"
           >
-            {this.state.loading ? "Depositing doe" : "Deposit"}
+            {this.state.loading ? (
+              <div class="spinner-border" role="status">
+                <span class="sr-only">Loading...</span>
+              </div>
+            ) : (
+              "Deposit"
+            )}
           </button>
+          <Link to="/dashboard">
+            <button className="btn btn-lg btn-primary mx-2" type="submit">
+              Back
+            </button>
+          </Link>
+
           <div className="">{this.state.error}</div>
         </form>
       </div>

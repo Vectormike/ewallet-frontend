@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import "./register.css";
 
 export default class Login extends Component {
@@ -105,12 +105,27 @@ export default class Login extends Component {
             required
           />
           <button
-            className="btn btn-lg btn-primary btn-block"
+            className="btn btn-md btn-primary mx-2"
             disabled={this.state.loading}
             type="submit"
           >
-            {this.state.loading ? "Sending data to NASA" : "Login"}
+            {this.state.loading ? (
+              <div class="spinner-border" role="status">
+                <span class="sr-only">Loading...</span>
+              </div>
+            ) : (
+              "Login"
+            )}
           </button>
+          <Link to="/">
+            <button
+              className="btn btn-md btn-primary mx-2"
+              disabled={this.state.loading}
+              type="submit"
+            >
+              Back
+            </button>
+          </Link>
           <div className="">{this.state.error}</div>
         </form>
       </div>
