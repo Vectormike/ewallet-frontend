@@ -1,57 +1,72 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import "./home.css";
+
 const Home = () => {
   return (
     <div>
-      <nav className="navbar navbar-light bg-light static-top">
-        <div className="container">
-          <a className="navbar-brand" href="a">
-            Crenet Techlabs
-          </a>
-          <Link to="/login">
-            <div id="signin_btn" className="btn btn-primary">
-              Sign In
-            </div>
-          </Link>
+      <nav class="navbar navbar-light bg-faded navbar-fixed-top">
+        {/* <button
+          class="navbar-toggler hidden-sm-up"
+          type="button"
+          data-toggle="collapse"
+          data-target="#exCollapsingNavbar2"
+          aria-controls="exCollapsingNavbar2"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          &#9776;
+        </button> */}
+        <div class="collapse navbar-toggleable-xs" id="exCollapsingNavbar2">
+          <ul class="nav navbar-nav pull-sm-right">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">
+                Home <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">
+                About
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="btn btn-primary" href="#">
+                Sign in
+              </a>
+            </li>
+          </ul>
         </div>
       </nav>
 
-      <header className="masthead text-white text-center">
-        <div className="overlay"></div>
-        <div className="container">
-          <div className="row">
-            <div className="col-xl-9 mx-auto">
-              <h1 className="mb-5">Welcome to Crenettechlabs ecommerce...</h1>
-            </div>
-            <div className="col-md-10 col-lg-8 col-xl-7 mx-auto">
-              <form>
-                <div className="form-row">
-                  <div className="col-12 col-md-9 mb-2 mb-md-0">
-                    <input
-                      type="text"
-                      className="form-control form-control-lg"
-                      value="Enter your email..."
-                    />
-                  </div>
-                  <div className="col-12 col-md-3">
-                    <Link to="/register">
-                      <button
-                        type="submit"
-                        className="btn btn-block btn-lg btn-primary"
-                      >
-                        Register!
-                      </button>
-                    </Link>
-                  </div>
-                </div>
-              </form>
-            </div>
+      <div id="stage">
+        <div id="stage-caption">
+          <h1 class="display-4">Crenettechlabs ecommerce</h1>
+          <div>
+            <Link to="register">
+              <button class="btn btn-primary mx-2">Register</button>
+            </Link>
+            <Link to="/login">
+              <button class="btn btn-primary mx-2">Login</button>
+            </Link>
           </div>
+          {/* <div className="container">
+            <div className="row">
+              <div class="col-md-6">
+                <a href="" class="btn btn-lg btn-success">
+                  Register
+                </a>
+              </div>
+              <div class="col-md-6">
+                <a href="" class="btn btn-lg btn-success">
+                  Login
+                </a>
+              </div>
+            </div>
+          </div> */}
+
+          <br />
         </div>
-      </header>
-      <div>
-        <h1>Hi</h1>
       </div>
     </div>
   );

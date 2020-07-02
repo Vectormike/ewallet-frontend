@@ -1,6 +1,7 @@
 html,
 body {
     height: 100%;
+    background-color: rgb(129, 126, 126);
 }
 
 .text-center {

@@ -76,6 +76,7 @@ export default class Deposit extends Component {
             onChange={this.onAmountChange}
             required
           />
+          <br />
           <button
             className="btn btn-lg btn-primary btn-block"
             disabled={this.state.loading}

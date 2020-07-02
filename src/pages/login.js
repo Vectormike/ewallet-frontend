@@ -91,6 +91,7 @@ export default class Login extends Component {
             onChange={this.onEmailChange}
             autoFocus
           />
+          <br />
           <label htmlFor="inputPassword" className="sr-only">
             Password
           </label>

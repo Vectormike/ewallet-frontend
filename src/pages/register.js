@@ -95,6 +95,7 @@ export default class Register extends Component {
             onChange={this.onNameChange}
             autoFocus
           />
+          <br />
           <label htmlFor="inputEmail" className="sr-only">
             Email address
           </label>
@@ -108,6 +109,7 @@ export default class Register extends Component {
             onChange={this.onEmailChange}
             autoFocus
           />
+          <br />
           <label htmlFor="inputPassword" className="sr-only">
             Password
           </label>
