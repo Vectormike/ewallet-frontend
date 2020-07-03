@@ -4,9 +4,7 @@
 
 ## Installation 
 - Clone the repository 
-- Run ```bash 
-npm install 
-``` to install dependencies. 
+- Run npm install to install dependencies. 
 
 In the project directory, you run:
 
